@@ -1,0 +1,43 @@
+
+CREATE DATABASE my_table;
+
+USE  my_table;
+
+CREATE TABLE course(
+                       course_code VARCHAR(6) NOT NULL,
+                       course_name VARCHAR(255),
+                       PRIMARY KEY (course_code)
+);
+
+CREATE TABLE users(
+    id INTEGER PRIMARY KEY ,
+    name VARCHAR(50)
+
+);
+
+SELECT * FROM users;
+
+INSERT users(id,name) VALUE (1,'Ali');
+INSERT users(id,name) VALUE (2,'Hasan');
+
+SELECT name FROM users;
+
+CREATE TABLE post(
+    post_id SERIAL PRIMARY KEY ,
+    title VARCHAR(50) NOT NULL ,
+    body VARCHAR(140),
+    author INTEGER NOT NULL,
+    FOREIGN KEY (author) REFERENCES users(id)
+);
+
+INSERT INTO post (title, body, author)
+VALUES ('First Post', 'This is my first post',2),
+       ('Second Post', 'This is my Second post',2),
+       ('Third Post', 'This is my third post',2),
+       ('Moin', 'Was gehts up ?',1);
+
+SELECT * FROM post;
+
+UPDATE post SET body = 'Hallo IronHack' WHERE post_id =2;
+
+DELETE FROM post WHERE post_id =4;
